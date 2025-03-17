@@ -9,16 +9,16 @@ app.use(authRouter);
 
 
 
-const PORT = 3000;
-
-
-app.listen(PORT, '0.0.0.0', function () {
+app.listen(process.env.PORT, '0.0.0.0', function () {
     console.log(`Server is Running on PORT: ${PORT}`)
 })
 
 
-const connectionString = "mongodb+srv://Fitness-App-Cluster:fitness-app-cluster-db@fitness-app-cluster.qojdt.mongodb.net/?retryWrites=true&w=majority&appName=Fitness-App-Cluster";
-mongoose.connect(connectionString).then(() => {
+
+mongoose.connect(process.env.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+}).then(() => {
     console.log("MongoDB Connected Successfully!");
 })
 
